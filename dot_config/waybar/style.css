@@ -1,0 +1,206 @@
+@define-color primary-1 #dddddd;
+@define-color primary-2 #222222;
+@define-color primary-2-shade-1 #444444;
+@define-color secondary-1 #CEE3B3;
+@define-color secondary-2 #E3B3B3;
+@define-color secondary-3 #B3D8E3;
+@define-color secondary-4 #E3CDB3;
+@define-color accent-1 #30BFA5;
+@define-color info #3083BF;
+@define-color good #30BF7A;
+@define-color bad #BF3030;
+
+* {
+    border: none;
+    border-radius: 6px;
+    font-family: "Symbols Nerd Font Mono", "Jetbrains Mono";
+    font-weight: 600;
+    font-size: 18px;
+    color: @primary-1;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+#custom-launcher {
+    font-size: 24px;
+    color: @accent-1;
+    padding: 12px;
+    background: @primary-2;
+}
+
+#workspaces {
+    padding: 0 1rem;
+    background: @primary-2;
+}
+
+#workspaces button {
+    padding: 0.3rem 1rem;
+    border-radius: 0;
+    box-shadow: inset 0 2px @primary-2,
+                inset 0 -2px @primary-2;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button:hover {
+    background: inherit;
+    color: @accent-1;
+    text-shadow: 0 0 4px @accent-1;
+}
+
+#workspaces button.active {
+    color: @accent-1;
+    box-shadow: inset 0 2px @accent-1,
+                inset 0 -2px @accent-1;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.active label {
+    color: @accent-1;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.special.active {
+    color: @accent-1;
+    box-shadow: inset 0 2px @primary-2,
+                inset 0 -2px @primary-2;
+    transition: box-shadow 0.3s ease-in-out,
+                color 0.3s ease-in-out;
+}
+
+#workspaces button label {
+    font-size: 20px;
+}
+
+#tray {
+    background: @primary-2;
+    padding: 0.5rem 1rem;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @accent-1;
+}
+
+#window {
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    background: @primary-2;
+}
+
+window#waybar.empty #window {
+    box-shadow: none;
+    background: transparent;
+}
+
+.modules-right {
+    background: @primary-2;
+    padding: 0.75rem 1rem;
+}
+
+.modules-right * {
+    padding: 0.1rem 0.5rem;
+}
+
+#language {
+    padding: 0;
+}
+
+#pulseaudio {
+    color: @primary-2;
+    background-color: @secondary-4;
+}
+
+#pulseaudio.source-muted {
+    color: @bad;
+}
+
+#network {
+    color: @primary-2;
+    background-color: @secondary-2;
+}
+
+#network.disconnected {
+    color: @bad;
+}
+
+#bluetooth {
+    color: @primary-2;
+    background-color: @secondary-3;
+}
+
+#hardware {
+    background-color: @primary-2-shade-1;
+}
+
+#power-profiles-daemon {
+    padding: 0;
+}
+
+#power-profiles-daemon.performance {
+    color: @bad;
+}
+
+#power-profiles-daemon.balanced {
+    color: @info;
+}
+
+#power-profiles-daemon.power-saver {
+    color: @good;
+}
+
+#cpu {
+}
+
+#memory {
+}
+
+#temperature {
+}
+
+#temperature.critical {
+    color: @bad; 
+}
+
+#backlight {
+    color: @accent-1;
+    background-color: @primary-2-shade-1;
+}
+
+#battery {
+    color: @primary-2;
+    background-color: @secondary-1;
+}
+
+#battery.charging, #battery.plugged {
+    color: @good;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.warning {
+    color: #ff5f1f;
+}
+
+#battery.critical:not(.charging) {
+    color: @bad;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#clock {
+    background-color: @primary-2-shade-1;
+}
+

@@ -3,10 +3,12 @@ if status is-interactive
 
     # Environment variables
     set -xg EDITOR nvim
+    set -xg VISUAL nvim
 
     # Abbreviations
     abbr --add dotdot --regex '^\.\.+$' --function multicd
     abbr --add !! --position anywhere --function last_history_item
+    abbr -a man batman
     abbr -a vim "$EDITOR" 
     abbr -a v "$EDITOR"
     abbr -a wifi nmtui

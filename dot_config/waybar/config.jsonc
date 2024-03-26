@@ -1,0 +1,184 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "top",
+    "margin": 8,
+    "spacing": 16,
+    "modules-left": [
+        "custom/launcher",
+        "tray",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "cpu",
+        "group/hardware",
+        "hyprland/language",
+        "backlight",
+        "bluetooth",
+        "pulseaudio",
+        "network",
+        "battery",
+        "clock"
+    ],
+    "group/hardware": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false,
+            "children-class": "hw-stats"
+        },
+        "modules": [
+            "power-profiles-daemon",
+            "memory",
+            "disk",
+            "temperature"
+        ]
+    },
+    "custom/launcher": {
+        "format": "󰣇",
+        "on-click": "rofi -show drun",
+        "on-click-right": "killall rofi"
+    },
+    "disk": {
+        "interval": 30,
+        "format": "  {percentage_used}%",
+        "path": "/"
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+        "on-click": "blueman-manager"
+    },
+    "hyprland/workspaces": {
+         "all-outputs": true,
+         "show-special": true,
+         "format": "{icon}",
+         "format-icons": {
+             "special": ""
+         }
+
+    },
+    "hyprland/window": {
+        "format": "{title}",
+        "rewrite": {
+            "(.*) — Firefox Developer Edition": "󰈹  $1",
+            "Fish": "  Fish 󰈺 ",
+            "(.*) — Fish": "  Fish 󰈺  $1",
+            "(.*) — Neovim": "  $1"
+        },
+        "separate-outputs": true,
+        "max-length": 50
+    },
+    "hyprland/language": {
+        "format": "| {short}{variant} |"
+    },
+    "pulseaudio": {
+        "format": " {volume}%",
+        "format-muted": " ",
+        "scroll-step": 3,
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "{icon} {essid}",
+        "format-icons": ["󰤟","󰤢","󰤥","󰤨"],
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click-right": "nm-connection-editor"
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+          "performance": "󰓅",
+          "balanced": "󰾅",
+          "power-saver": "󰾆"
+        }
+    },
+    "cpu": {
+        // "format": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}",
+        "format": "{icon}",
+        "format-icons": [
+          "<span color='#69ff94'>▁</span>", // green
+          "<span color='#2aa9ff'>▂</span>", // blue
+          "<span color='#f8f8f2'>▃</span>", // white
+          "<span color='#f8f8f2'>▄</span>", // white
+          "<span color='#ffffa5'>▅</span>", // yellow
+          "<span color='#ffffa5'>▆</span>", // yellow
+          "<span color='#ff9977'>▇</span>", // orange
+          "<span color='#dd532e'>█</span>"  // red
+        ]
+    },
+    "memory": {
+        "format": " {}%"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        "format": "{icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "tray": {
+        "icon-size": 24,
+        "show-passive-items": true,
+        "spacing": 12
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%A, %B %d, %Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode"          : "year",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "on-click-right": "mode",
+            "format": {
+                  "months":     "<span color='#ffead3'><b>{}</b></span>",
+                  "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                  "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                  "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                  "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    }    
+}
