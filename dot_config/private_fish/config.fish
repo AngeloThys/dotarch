@@ -27,4 +27,18 @@ if status is-interactive
     abbr -a  gst git stash
     abbr -a  gcheck git checkout
     abbr -a  gcredential git config credential.helper store
+
+    # Vi keybindings
+    set -g fish_key_bindings fish_vi_key_bindings
+
+    # Vi cursor shapes
+    set fish_cursor_default     block       blink
+    set fish_cursor_insert      line        blink
+    set fish_cursor_replace_one underscore  blink
+    set fish_cursor_replace     underscore
+    set fish_cursor_external    line        blink
+    set fish_cursor_visual      block
+
+    # Starship
+    starship init fish | source
 end
