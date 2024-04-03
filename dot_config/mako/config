@@ -1,0 +1,27 @@
+sort=-time
+max-history=15
+font=Jetbrains Mono 16
+background-color=#222222CC
+text-color=#dddddd
+width=400
+height=200
+border-color=#30BFA5
+border-radius=6
+progress-color=over #30BFA5
+icons=1
+max-icon-size=24
+default-timeout=5000
+ignore-timeout=1
+layer=overlay
+anchor=top-center
+text-alignment=center
+
+[urgency=low]
+border-color=#3083BF
+
+[urgency=normal]
+border-color=#30BFA5
+
+[urgency=high]
+border-color=#BF3030
+default-timeout=0
