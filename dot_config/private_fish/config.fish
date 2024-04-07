@@ -9,19 +9,41 @@ if status is-interactive
     # Environment variables
     set -xg EDITOR nvim
     set -xg VISUAL nvim
+    set -xg EZA_ICONS_AUTO
+    set -xg fzf_preview_dir_cmd eza --color=always --icons=always --all
+    set fzf_fd_opts --hidden --follow --max-depth 5
+    set -xg fzf_diff_highlighter delta --paging=never --width=20
+
+    # Python
+    abbr -a py python
 
     # Abbreviations
     abbr --add dotdot --regex '^\.\.+$' --function multicd
     abbr --add !! --position anywhere --function last_history_item
     abbr -a man batman
+    abbr -a cat bat
     abbr -a vim "$EDITOR"
     abbr -a v "$EDITOR"
     abbr -a wifi nmtui
     abbr -a dot cd ~/dotarch
-    abbr -a ls eza -ah --icons
-    abbr -a ll eza -lah --icons
-    abbr -a lt eza -ah --tree --level=1 --icons
+    abbr -a ls eza -ah
+    abbr -a ll eza -lah
+    abbr -a lt eza -ah --tree --level=1
     abbr -a c clear
+    abbr -a cl clear
+
+    # Chezmoi
+    abbr -a cm chezmoi
+    abbr -a cms chezmoi status
+    abbr -a cma chezmoi add
+    abbr -a cmr chezmoi re-add
+    abbr -a cmc chezmoi cd
+    abbr -a cmd chezmoi diff
+    abbr -a cmu chezmoi update
+    abbr -a cmf chezmoi forget
+    abbr -a cmm chezmoi managed
+    abbr -a cmap chezmoi apply
+    abbr -a cme chezmoi edit
 
     # Git
     abbr -a gs git status
@@ -43,6 +65,9 @@ if status is-interactive
     set fish_cursor_replace underscore
     set fish_cursor_external line blink
     set fish_cursor_visual block
+
+    # Fzf
+    fzf --fish | source
 
     # Starship
     starship init fish | source
