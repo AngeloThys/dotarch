@@ -1,6 +1,7 @@
 [user]
 	email = thys.angelo@gmail.com
 	name = Angelo Thys
+	signingKey = /home/athys/.ssh/id_ed25519_sk
 
 [core]
     pager = delta
@@ -18,3 +19,7 @@
     colorMoved = default
 [init]
 	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /home/athys/.ssh/allowed_signers

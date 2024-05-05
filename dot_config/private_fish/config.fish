@@ -5,6 +5,8 @@ if status is-interactive
     fish_add_path ~/.icons
     fish_add_path /usr/share/icons
     fish_add_path ~/.local/share/icons
+    fish_add_path ~/.rbenv/versions/3.3.0/bin/
+    fish_add_path ~/go/bin/
 
     # Environment variables
     set -xg EDITOR nvim
@@ -13,6 +15,8 @@ if status is-interactive
     set -xg fzf_preview_dir_cmd eza --color=always --icons=always --all
     set fzf_fd_opts --hidden --follow --max-depth 5
     set -xg fzf_diff_highlighter delta --paging=never --width=20
+    set -xg SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
+    set -xg nvm_default_version latest
 
     # Python
     abbr -a py python
@@ -26,11 +30,12 @@ if status is-interactive
     abbr -a v "$EDITOR"
     abbr -a wifi nmtui
     abbr -a dot cd ~/dotarch
-    abbr -a ls eza -ah
-    abbr -a ll eza -lah
+    abbr -a ls eza -ahgH
+    abbr -a ll eza -lahgH
     abbr -a lt eza -ah --tree --level=1
     abbr -a c clear
     abbr -a cl clear
+    abbr -a wlc wl-copy
 
     # Chezmoi
     abbr -a cm chezmoi
@@ -48,8 +53,12 @@ if status is-interactive
     # Git
     abbr -a gs git status
     abbr -a ga git add
-    abbr -a gc git commit -m
+    abbr -a gc git commit -S -m
     abbr -a gp git push
+    abbr -a gd git diff
+    abbr -a gds git diff --staged
+    abbr -a gl git log
+    abbr -a glg git log --graph --oneline --all
     abbr -a gpl git pull
     abbr -a gst git stash
     abbr -a gcheck git checkout
@@ -66,8 +75,19 @@ if status is-interactive
     set fish_cursor_external line blink
     set fish_cursor_visual block
 
+    # pyenv
+    set -gx PYENV_ROOT $HOME/.pyenv
+    fish_add_path $PYENV_ROOT/bin
+    pyenv init - | source
+
+    # rubyenv
+    status --is-interactive; and rbenv init - fish | source
+
     # Fzf
     fzf --fish | source
+
+    # zoxide
+    zoxide init fish | source
 
     # Starship
     starship init fish | source
@@ -77,3 +97,6 @@ if status is-interactive
         tmux attach -t base || tmux new -s base
     end
 end
+
+# Generated for envman. Do not edit.
+test -s ~/.config/envman/load.fish; and source ~/.config/envman/load.fish
