@@ -6,18 +6,19 @@
     "spacing": 16,
     "modules-left": [
         "custom/launcher",
-        "tray",
-        "hyprland/window"
+        "tray"
+//        "hyprland/window"
     ],
     "modules-center": [
         "hyprland/workspaces"
     ],
     "modules-right": [
         "cpu",
-        "group/hardware",
+//        "group/hardware",
+        "power-profiles-daemon",
         "hyprland/language",
         "backlight",
-        "bluetooth",
+//        "bluetooth",
         "pulseaudio",
         "network",
         "battery",
